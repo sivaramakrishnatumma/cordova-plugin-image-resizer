@@ -261,7 +261,7 @@ public class ImageResizer extends CordovaPlugin {
                 FileOutputStream out = new FileOutputStream(file);
                 // bitmap.compress(Bitmap.CompressFormat.JPEG, quality, out);
                 bitmap.setHasAlpha(true);
-                bitmap.compress(Bitmap.CompressFormat.PNG, quality, baos);
+                bitmap.compress(Bitmap.CompressFormat.PNG, quality, out);
                 out.flush();
                 out.close();
             } catch (Exception e) {
