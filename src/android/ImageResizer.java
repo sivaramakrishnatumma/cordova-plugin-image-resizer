@@ -138,8 +138,8 @@ public class ImageResizer extends CordovaPlugin {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         // bmp.compress(Bitmap.CompressFormat.JPEG, quality, baos);
-        bitmap.setHasAlpha(true); 
-        bitmap.compress(Bitmap.CompressFormat.PNG, quality, out);
+        bmp.setHasAlpha(true); 
+        bmp.compress(Bitmap.CompressFormat.PNG, quality, baos);
         byte[] imageBytes = baos.toByteArray();
 
         String encodedImage = Base64.encodeToString(imageBytes, Base64.NO_WRAP);
@@ -259,7 +259,9 @@ public class ImageResizer extends CordovaPlugin {
             if (file.exists()) file.delete();
             try {
                 FileOutputStream out = new FileOutputStream(file);
-                bitmap.compress(Bitmap.CompressFormat.JPEG, quality, out);
+                // bitmap.compress(Bitmap.CompressFormat.JPEG, quality, out);
+                bitmap.setHasAlpha(true);
+                bitmap.compress(Bitmap.CompressFormat.PNG, quality, baos);
                 out.flush();
                 out.close();
             } catch (Exception e) {
